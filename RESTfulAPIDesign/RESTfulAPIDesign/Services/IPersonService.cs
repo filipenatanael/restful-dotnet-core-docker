@@ -3,7 +3,7 @@ using RESTfulAPIDesign.Models;
 
 namespace RESTfulAPIDesign.Services
 {
-    interface IPersonService
+    public interface IPersonService
     {
         Person Create(Person person);
         Person FindById(long id);

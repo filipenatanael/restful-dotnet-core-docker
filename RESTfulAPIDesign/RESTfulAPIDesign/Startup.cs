@@ -21,6 +21,11 @@ namespace RESTfulAPIDesign
         {
             services.AddMvc();
 
+            /* Dependency Injection:
+             * 
+             * This mapping between the interface and the concrete type defines, 
+             * that everytime you request a type of IPersonService, you'll get a new instance of the PersonServiceImpl. 
+            */
             services.AddScoped<IPersonService, PersonServiceImpl>();
         }
 
