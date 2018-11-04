@@ -1,15 +1,32 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using RESTfulAPIDesign.Models;
+using RESTfulAPIDesign.Models.Context;
 
 namespace RESTfulAPIDesign.Services.Implementations
 {
     public class PersonServiceImpl : IPersonService
     {
+        private MySQLContext context;
         private volatile int count;
+
+        public PersonServiceImpl(MySQLContext context)
+        {
+            this.context = context;
+        }
 
         public Person Create(Person person)
         {
+            try
+            {
+                this.context.Add(person);
+                this.context.SaveChanges();
+            }
+            catch(Exception exception)
+            {
+                throw exception;
+            }
             return person;
         }
 
@@ -35,7 +52,7 @@ namespace RESTfulAPIDesign.Services.Implementations
             {
                 Id = 1,
                 FirstName = "Filipe",
-                SecondName = "Natanael",
+                LastName = "Natanael",
                 Address = "Belo Horizonte - Minas Gerais",
                 Gender = "Male"
             };
@@ -52,7 +69,7 @@ namespace RESTfulAPIDesign.Services.Implementations
             {
                 Id = Increment(),
                 FirstName = "Person Name" + i,
-                SecondName = "Person Second Name" + i,
+                LastName = "Person Second Name" + i,
                 Address = "Belo Horizonte - Minas Gerais" + i,
                 Gender = "Male"
             };
