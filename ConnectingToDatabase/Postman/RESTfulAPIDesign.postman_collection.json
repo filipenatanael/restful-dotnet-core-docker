@@ -1,0 +1,121 @@
+{
+	"info": {
+		"_postman_id": "f72f3bbf-901b-421c-86f9-02827995409c",
+		"name": "RESTfulAPIDesign",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Person",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:53039/api/persons",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "53039",
+					"path": [
+						"api",
+						"persons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Person",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n        \"id\": 10,\n        \"firstName\": \"John\",\n        \"secondName\": \"Johny\",\n        \"address\": \"Belo Horizonte - Minas Gerais\",\n        \"gender\": \"Male\"\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:53039/api/persons",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "53039",
+					"path": [
+						"api",
+						"persons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Person",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n        \"id\": 1,\n        \"firstName\": \"John\",\n        \"secondName\": \"Johny\",\n        \"address\": \"Belo Horizonte - Minas Gerais\",\n        \"gender\": \"Male\"\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:53039/api/persons/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "53039",
+					"path": [
+						"api",
+						"persons",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Person",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:53039/api/persons/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "53039",
+					"path": [
+						"api",
+						"persons",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
