@@ -7,7 +7,7 @@ namespace RESTfulAPIDesign.Services.Implementations
 {
     public class PersonServiceImpl : IPersonService
     {
-        private volatile count;
+        private volatile int count;
 
         public Person Create(Person person)
         {
@@ -52,8 +52,8 @@ namespace RESTfulAPIDesign.Services.Implementations
             return new Person
             {
                 Id = Increment(),
-                FirstName = "Filipe" + i,
-                SecondName = "Natanael" + i,
+                FirstName = "Person Name" + i,
+                SecondName = "Person Second Name" + i,
                 Address = "Belo Horizonte - Minas Gerais" + i,
                 Gender = "Male"
             };
