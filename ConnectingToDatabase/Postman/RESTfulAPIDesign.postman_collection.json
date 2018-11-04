@@ -43,7 +43,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "    {\n        \"id\": 10,\n        \"firstName\": \"John\",\n        \"secondName\": \"Johny\",\n        \"address\": \"Belo Horizonte - Minas Gerais\",\n        \"gender\": \"Male\"\n    }"
+					"raw": "    {\n        \"id\": 10,\n        \"firstName\": \"John\",\n        \"lastName\": \"Johny\",\n        \"address\": \"Belo Horizonte - Minas Gerais\",\n        \"gender\": \"Male\"\n    }"
 				},
 				"url": {
 					"raw": "http://localhost:53039/api/persons",
@@ -74,7 +74,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "    {\n        \"id\": 1,\n        \"firstName\": \"John\",\n        \"secondName\": \"Johny\",\n        \"address\": \"Belo Horizonte - Minas Gerais\",\n        \"gender\": \"Male\"\n    }"
+					"raw": "    {\n        \"id\": 1,\n        \"firstName\": \"John\",\n        \"lastName\": \"Johny\",\n        \"address\": \"Belo Horizonte - Minas Gerais\",\n        \"gender\": \"Male\"\n    }"
 				},
 				"url": {
 					"raw": "http://localhost:53039/api/persons/1",
