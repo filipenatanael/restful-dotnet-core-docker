@@ -1,0 +1,123 @@
+{
+	"info": {
+		"_postman_id": "ba16e323-3024-4cba-84ff-e32699ca5200",
+		"name": "restful-apis-aspnet-core-post-man",
+		"description": "Learning Webservices API's REST e RESTful Using ASP.NET Core 2.0",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Calculator",
+			"item": [
+				{
+					"name": "Addition",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:50080/api/calculator/addition/5/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "50080",
+							"path": [
+								"api",
+								"calculator",
+								"addition",
+								"5",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Subtraction",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:50080/api/calculator/subtraction/5/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "50080",
+							"path": [
+								"api",
+								"calculator",
+								"subtraction",
+								"5",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Division",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:50080/api/calculator/division/5/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "50080",
+							"path": [
+								"api",
+								"calculator",
+								"division",
+								"5",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mean",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:50080/api/calculator/mean/5/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "50080",
+							"path": [
+								"api",
+								"calculator",
+								"mean",
+								"5",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
