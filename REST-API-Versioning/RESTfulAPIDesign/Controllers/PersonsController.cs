@@ -4,7 +4,8 @@ using RESTfulAPIDesign.Services;
 
 namespace RESTfulAPIDesign.Controllers
 {
-    [Route("api/[controller]")]
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     public class PersonsController : Controller
     {
         private IPersonService personService;
