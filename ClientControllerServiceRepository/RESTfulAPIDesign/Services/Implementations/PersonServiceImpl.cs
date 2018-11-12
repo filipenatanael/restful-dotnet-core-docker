@@ -1,96 +1,46 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using RESTfulAPIDesign.Models;
 using RESTfulAPIDesign.Models.Context;
+using RESTfulAPIDesign.Repository;
 
 namespace RESTfulAPIDesign.Services.Implementations
 {
     public class PersonServiceImpl : IPersonService
     {
-        private MySQLContext context;
+        private IPersonRepository repository;
 
-        public PersonServiceImpl(MySQLContext context)
+        public PersonServiceImpl(IPersonRepository repository)
         {
-            this.context = context;
+            this.repository = repository;
         }
         
-        // Method to create persons
         public Person Create(Person person)
-        {
-            try
-            {
-                this.context.Add(person);
-                this.context.SaveChanges();
-            }
-            catch(Exception exception)
-            {
-                throw exception;
-            }
-            return person;
+        {   
+            // Validation here...
+            return this.repository.Create(person);
         }
 
-        // Method to find all persons
         public List<Person> FindAll()
         {
-            return this.context.Persons.ToList();
+            // Validation here...
+            return this.repository.FindAll();
         }
 
         public Person FindById(long id)
         {
-            return new Person
-            {
-                Id = 1,
-                FirstName = "Filipe",
-                LastName = "Natanael",
-                Address = "Belo Horizonte - Minas Gerais",
-                Gender = "Male"
-            };
+            return this.repository.FindById(id);
         }
 
         public Person Update(Person person)
         {
-            if (!Exist(person.Id)) return new Person();
-
-            // Search for a person who ID is equals to person.Id received by param
-            var registry = this.context.Persons.SingleOrDefault(p => p.Id.Equals(person.Id));
-
-            try
-            {
-                this.context.Entry(registry).CurrentValues.SetValues(person);
-                this.context.SaveChanges();
-            }
-            catch (Exception exception)
-            {
-                throw exception;
-            }
-            return person;
+            return this.repository.Update(person);
         }
 
         public void Delete(long id)
         {
-            // Search for a person who ID is equals to person.Id received by param
-            var registry = this.context.Persons.SingleOrDefault(p => p.Id.Equals(id));
-
-            try
-            {   
-                if(registry != null)
-                {
-                    this.context.Persons.Remove(registry);
-                    this.context.SaveChanges();
-                }
-                
-            }
-            catch (Exception exception)
-            {
-                throw exception;
-            }
-        }
-
-        private bool Exist(long? id)
-        {
-            return this.context.Persons.Any(p => p.Id.Equals(id));
+            this.repository.Delete(id);
         }
     }
 }

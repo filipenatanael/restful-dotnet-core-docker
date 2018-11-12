@@ -1,13 +1,13 @@
-# Introduction to API Versioning Best Practices
+# Client Controller Service Repository
 
-- Go to NuGet and install: Microsoft.AspNetCore.Mvc.Versioning 2.3.0
+- Client
+- Controller
+- Service
+- Repository 
+  - Context
 
-*http://localhost:8080/api/v1.0/persons*
-```C#
-    [ApiVersion("1.0")]
-    [Route("api/v{version:apiVersion}/[controller]")]
-    public class PersonsController : Controller { ...  }
-```
+What (long? ) means? 
+- nullable
 
 [Versioning via the URL Path](https://github.com/Microsoft/aspnet-api-versioning/wiki/Versioning-via-the-URL-Path)
 [API Versioning Options](https://github.com/Microsoft/aspnet-api-versioning/wiki/API-Versioning-Options)

@@ -6,6 +6,7 @@ namespace RESTfulAPIDesign.Controllers
 {
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/[controller]")]
+    // http://localhost:53039/api/v1.0/persons
     public class PersonsController : Controller
     {
         private IPersonService personService;
