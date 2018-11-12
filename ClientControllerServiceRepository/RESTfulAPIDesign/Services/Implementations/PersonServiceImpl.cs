@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using RESTfulAPIDesign.Models;
-using RESTfulAPIDesign.Models.Context;
-using RESTfulAPIDesign.Repository;
 
 namespace RESTfulAPIDesign.Services.Implementations
 {
@@ -41,6 +37,11 @@ namespace RESTfulAPIDesign.Services.Implementations
         public void Delete(long id)
         {
             this.repository.Delete(id);
+        }
+
+        public bool Exists(long id)
+        {
+            return this.repository.Exists(id);
         }
     }
 }
