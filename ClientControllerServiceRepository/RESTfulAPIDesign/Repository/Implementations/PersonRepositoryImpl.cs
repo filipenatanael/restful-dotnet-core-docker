@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using RESTfulAPIDesign.Models;
 using RESTfulAPIDesign.Models.Context;
 
-namespace RESTfulAPIDesign.Repository.Implementations
+namespace RESTfulAPIDesign.Services.Implementations
 {
     public class PersonRepositoryImpl : IPersonRepository
     {
