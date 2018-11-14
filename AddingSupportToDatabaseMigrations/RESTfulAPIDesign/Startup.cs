@@ -1,28 +1,56 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore; 
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using RESTfulAPIDesign.Models.Context;
 using RESTfulAPIDesign.Services;
 using RESTfulAPIDesign.Services.Implementations;
+using System;
+using System.Collections.Generic;
 
 namespace RESTfulAPIDesign
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
+        private readonly ILogger logger;
+        public IConfiguration configuration { get; }
+        public IHostingEnvironment environment { get; }
 
-        public IConfiguration Configuration { get; }
+        public Startup(IConfiguration configuration, IHostingEnvironment environment, ILogger<Startup> logger)
+        {
+            this.configuration = configuration;
+            this.environment = environment;
+            this.logger = logger;
+        }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var connection = Configuration["MySqlConnection:MySqlConnectionString"];
-            services.AddDbContext<MySQLContext>(options => options.UseMySql(connection));
+            var connectionString = configuration["MySqlConnection:MySqlConnectionString"];
+            services.AddDbContext<MySQLContext>(options => options.UseMySql(connectionString));
+
+            if(this.environment.IsDevelopment())
+            {
+                try
+                {
+                    var evolveConnection = new MySql.Data.MySqlClient.MySqlConnection(connectionString);
+                    var evolve = new Evolve.Evolve("evolve.json", evolveConnection, msg => logger.LogInformation(msg))
+                    {   
+                        // Where are the magrations:
+                        Locations = new List<string> { "Database/migrations" },
+                        // Does not clean database
+                        IsEraseDisabled = true
+                    };
+                    evolve.Migrate();
+
+                } catch(Exception exception)
+                {
+                    this.logger.LogCritical("Database migration failed: ", exception);
+                    throw;
+                }
+            }
 
             services.AddMvc();
 

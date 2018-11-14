@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="evolve.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Database\DataSet\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
@@ -12,10 +17,24 @@
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="3.0.0-beta1" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.1.2" />
+	<PackageReference Include="MySql.Data" Version="8.0.11" />
+	<PackageReference Include="Evolve" Version="1.8.0" />
   </ItemGroup>
 
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.1" />
   </ItemGroup>
+
+  <ItemGroup>
+    <None Include="evolve.json" />
+  </ItemGroup>
+  
+  <Target Name="ChangeAliasesOfStrongNameAssemblies" BeforeTargets="FindReferenceAssembliesForReferences;ResolveReferences">
+    <ItemGroup>
+      <ReferencePath Condition="'%(FileName)' == 'MySqlConnector'">
+        <Aliases>MySqlConnectorAlias</Aliases>
+      </ReferencePath>
+    </ItemGroup>
+  </Target>
 
 </Project>
