@@ -9,7 +9,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Database\DataSet\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 

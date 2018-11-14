@@ -5,4 +5,4 @@ CREATE TABLE IF NOT EXISTS `books` (
   `Price` decimal(65,2) NOT NULL,
   `Title` longtext,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB;
