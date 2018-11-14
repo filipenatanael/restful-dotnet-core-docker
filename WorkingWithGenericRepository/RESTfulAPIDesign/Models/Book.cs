@@ -1,20 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+using RESTfulAPIDesign.Models.Base;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace RESTfulAPIDesign.Models
 {
-    public class Book
+    [Table("books")]
+    public class Book : BaseEntity
     {
-        [Key]
-        [Column("id")]
-        public string Id { get; set; }
+        [Column("Title")]
         public string Title { get; set; }
+
+        [Column("Author")]
         public string Author { get; set; }
+
+        [Column("Price")]
         public decimal Price { get; set; }
+
+        [Column("LaunchDate")]
         public DateTime LaunchDate { get; set; }
     }
 }

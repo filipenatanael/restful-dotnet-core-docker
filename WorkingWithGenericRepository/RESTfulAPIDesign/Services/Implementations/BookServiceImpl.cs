@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
 using RESTfulAPIDesign.Models;
+using RESTfulAPIDesign.Repository.Generic;
 
 namespace RESTfulAPIDesign.Services.Implementations
 {
     public class BookServiceImpl : IBookService
     {
-        private IBookRepository repository;
+        private IRepository<Book> repository;
 
-        public BookServiceImpl(IPersonRepository repository)
+        public BookServiceImpl(IRepository<Book> repository)
         {
             this.repository = repository;
         }
@@ -20,7 +21,6 @@ namespace RESTfulAPIDesign.Services.Implementations
 
         public List<Book> FindAll()
         {
-            // Validation here...
             return this.repository.FindAll();
         }
 

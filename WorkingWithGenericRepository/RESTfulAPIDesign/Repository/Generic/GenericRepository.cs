@@ -6,22 +6,24 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace RESTfulAPIDesign.Repository.Generic
-{
-    public class GenericRepository<T> : IRepository<T> where T : TEntity
+{   
+    // public class GenericRepository<Book> : IRepository<Book> where Book : BaseEntity
+    public class GenericRepository<T> : IRepository<T> where T : BaseEntity
     {
-        private MySQLContext context;
+        private readonly MySQLContext context;
         private DbSet<T> dataset;
 
-        public GenericRepository(MySQLContext context)
+        public GenericRepository(MySQLContext _context)
         {
-            this.context = context;
+            this.context = _context;
             this.dataset = this.context.Set<T>();
         }
 
         public T Create(T entity)
         {
             try
-            {
+            {   
+                // Example: this.book.Add(book);
                 this.dataset.Add(entity);
                 this.context.SaveChanges();
             }

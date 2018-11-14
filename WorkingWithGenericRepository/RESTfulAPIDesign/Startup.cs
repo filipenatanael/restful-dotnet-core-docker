@@ -42,7 +42,7 @@ namespace RESTfulAPIDesign
                         // Where are the magrations:
                         Locations = new List<string> { "Database/migrations" },
                         // Does not clean database
-                        IsEraseDisabled = true
+                         IsEraseDisabled = true
                     };
                     evolve.Migrate();
 
@@ -57,15 +57,16 @@ namespace RESTfulAPIDesign
 
             services.AddApiVersioning();
 
-            /* Dependency Injection:
+            /* Dependency Injection:as
              * 
              * This mapping between the interface and the concrete type defines, 
              * that everytime you request a type of IPersonService, you'll get a new instance of the PersonServiceImpl. 
             */
             services.AddScoped<IPersonService, PersonServiceImpl>();
+            services.AddScoped<IBookService, BookServiceImpl>();
             services.AddScoped<IPersonRepository, PersonRepositoryImpl>();
 
-            services.AddScoped<typeof (IRepository <>), typeof(GenericRepository<>)>
+            services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

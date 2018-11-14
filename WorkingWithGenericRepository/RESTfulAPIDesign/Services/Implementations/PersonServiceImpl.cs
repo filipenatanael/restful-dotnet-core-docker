@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
 using RESTfulAPIDesign.Models;
+using RESTfulAPIDesign.Repository.Generic;
 
 namespace RESTfulAPIDesign.Services.Implementations
 {
     public class PersonServiceImpl : IPersonService
     {
-        private IPersonRepository repository;
+        private IRepository<Person> repository;
 
-        public PersonServiceImpl(IPersonRepository repository)
+        public PersonServiceImpl(IRepository<Person> repository)
         {
             this.repository = repository;
         }

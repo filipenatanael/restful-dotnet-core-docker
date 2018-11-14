@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace RESTfulAPIDesign.Repository.Generic
 {
-    public interface IRepository<T> where T : TEntity
+    public interface IRepository<T> where T : BaseEntity
     {
-        /* TEntity will be define in runtime by c# */
+        /* T(TEntity) will be define in runtime by c# */
         T Create(T entity);
         T FindById(long id);
         List<T> FindAll();
