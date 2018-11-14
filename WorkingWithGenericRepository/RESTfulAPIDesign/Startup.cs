@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using RESTfulAPIDesign.Models.Context;
+using RESTfulAPIDesign.Repository.Generic;
 using RESTfulAPIDesign.Services;
 using RESTfulAPIDesign.Services.Implementations;
 using System;
@@ -63,6 +64,8 @@ namespace RESTfulAPIDesign
             */
             services.AddScoped<IPersonService, PersonServiceImpl>();
             services.AddScoped<IPersonRepository, PersonRepositoryImpl>();
+
+            services.AddScoped<typeof (IRepository <>), typeof(GenericRepository<>)>
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
