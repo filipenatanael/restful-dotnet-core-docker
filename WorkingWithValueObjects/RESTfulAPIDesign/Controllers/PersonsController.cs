@@ -1,12 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RESTfulAPIDesign.Data.ValuesObjects;
 using RESTfulAPIDesign.Models;
 using RESTfulAPIDesign.Services;
+using System;
 
 namespace RESTfulAPIDesign.Controllers
 {
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/[controller]")]
-    // http://localhost:53039/api/v1.0/persons
     public class PersonsController : Controller
     {
         private IPersonService personService;
@@ -16,14 +17,14 @@ namespace RESTfulAPIDesign.Controllers
             this.personService = personService;
         }
 
-        // GET api/persons
+        // GET api/version/controller/5
         [HttpGet]
         public IActionResult Get()
         {
             return Ok(this.personService.FindAll());
         }
 
-        // GET api/persons/5
+        // GET api/version/controller/5
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
@@ -32,17 +33,25 @@ namespace RESTfulAPIDesign.Controllers
             return Ok(person);
         }
 
-        // POST api/persons
+        // POST api/version/controller
         [HttpPost]
-        public IActionResult Post([FromBody]Person person)
+        public IActionResult Post([FromBody]PersonVO person)
         {
             if (person == null) return BadRequest();
-            return new ObjectResult(this.personService.Create(person));
+            try
+            {
+                return new ObjectResult(this.personService.Create(person));
+            }
+            catch (Exception exception)
+            {
+                return new ObjectResult(exception.InnerException.Message);
+            }
+           
         }
 
-        // PUT api/values/5
+        // PUT api/version/controller/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody]Person person)
+        public IActionResult Put(int id, [FromBody]PersonVO person)
         {
             if (person == null) return BadRequest();
             var updatePerson = this.personService.Update(person);
@@ -50,7 +59,7 @@ namespace RESTfulAPIDesign.Controllers
             return new ObjectResult(updatePerson);
         }
 
-        // DELETE api/persons/5
+        // DELETE api/version/controller/5
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
