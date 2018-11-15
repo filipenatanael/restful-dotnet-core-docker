@@ -19,10 +19,20 @@ namespace RESTfulAPIDesign.Repository.Generic
             this.dataset = this.context.Set<T>();
         }
 
+        public List<T> FindAll()
+        {
+            return this.dataset.ToList();
+        }
+
+        public T FindById(long id)
+        {
+            return this.dataset.SingleOrDefault(p => p.Id.Equals(id));
+        }
+
         public T Create(T entity)
         {
             try
-            {   
+            {
                 // Example: this.book.Add(book);
                 this.dataset.Add(entity);
                 this.context.SaveChanges();
@@ -32,16 +42,6 @@ namespace RESTfulAPIDesign.Repository.Generic
                 throw exception;
             }
             return entity;
-        }
-
-        public List<T> FindAll()
-        {
-            return this.dataset.ToList();
-        }
-
-        public T FindById(long id)
-        {
-            return this.dataset.SingleOrDefault(p => p.Id.Equals(id));
         }
 
         public T Update(T entity)

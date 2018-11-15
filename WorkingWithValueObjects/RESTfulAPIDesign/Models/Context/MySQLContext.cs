@@ -1,5 +1,4 @@
-﻿// To use DbContext
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace RESTfulAPIDesign.Models.Context
 {
@@ -10,7 +9,7 @@ namespace RESTfulAPIDesign.Models.Context
         public MySQLContext(DbContextOptions<MySQLContext> options) : base(options) {}
 
         public DbSet<Person> Persons { get; set; }
-        public DbSet<Book> Book { get; set;  }
+        public DbSet<Book> Books { get; set;  }
 
     }
 }

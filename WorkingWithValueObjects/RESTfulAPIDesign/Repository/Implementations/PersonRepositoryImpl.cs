@@ -14,23 +14,7 @@ namespace RESTfulAPIDesign.Services.Implementations
         {
             this.context = context;
         }
-        
-        // Method to create persons
-        public Person Create(Person person)
-        {
-            try
-            {
-                this.context.Add(person);
-                this.context.SaveChanges();
-            }
-            catch(Exception exception)
-            {
-                throw exception;
-            }
-            return person;
-        }
-
-        // Method to find all persons
+      
         public List<Person> FindAll()
         {
             return this.context.Persons.ToList();
@@ -39,6 +23,21 @@ namespace RESTfulAPIDesign.Services.Implementations
         public Person FindById(long id)
         {
             return this.context.Persons.SingleOrDefault(p => p.Id.Equals(id));
+        }
+
+        // Method to create persons
+        public Person Create(Person person)
+        {
+            try
+            {
+                this.context.Add(person);
+                this.context.SaveChanges();
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
+            return person;
         }
 
         public Person Update(Person person)
