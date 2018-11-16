@@ -1,0 +1,276 @@
+{
+	"info": {
+		"_postman_id": "f72f3bbf-901b-421c-86f9-02827995409c",
+		"name": "RESTfulAPIDesign",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "All Persons",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "text/xml",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:53039/api/v1.0/persons",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "53039",
+					"path": [
+						"api",
+						"v1.0",
+						"persons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Person",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n        \"id\": 15,\n        \"firstName\": \"John\",\n        \"lastName\": \"Stive\",\n        \"address\": \"Belo Horizonte\",\n        \"gender\": \"Male\"\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:53039/api/v1.0/persons",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "53039",
+					"path": [
+						"api",
+						"v1.0",
+						"persons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Person",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n        \"id\": 15,\n        \"firstName\": \"John\",\n        \"lastName\": \"Stive\",\n        \"address\": \"Belo Horizonte\",\n        \"gender\": \"Male\"\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:53039/api/v1.0/persons/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "53039",
+					"path": [
+						"api",
+						"v1.0",
+						"persons",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Person",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:53039/api/v1.0/persons/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "53039",
+					"path": [
+						"api",
+						"v1.0",
+						"persons",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All Books",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "text/xml",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:53039/api/v1.0/books",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "53039",
+					"path": [
+						"api",
+						"v1.0",
+						"books"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Book",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n        \"title\": \"Design Patterns - Testing\",\n        \"author\": \"Ralph Johnson, Erich Gamma, John Vlissides e Richard Helm\",\n        \"price\": 45,\n        \"launchDate\": \"2017-11-29T15:15:13.636\",\n        \"id\": 23\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:53039/api/v1.0/books",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "53039",
+					"path": [
+						"api",
+						"v1.0",
+						"books"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Book",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n        \"title\": \"Design Patterns\",\n        \"author\": \"Ralph Johnson, Erich Gamma, John Vlissides e Richard Helm\",\n        \"price\": 45,\n        \"launchDate\": \"2017-11-29T15:15:13.636\",\n        \"id\": 23\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:53039/api/v1.0/books/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "53039",
+					"path": [
+						"api",
+						"v1.0",
+						"books",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Book",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:53039/api/v1.0/books/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "53039",
+					"path": [
+						"api",
+						"v1.0",
+						"books",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
