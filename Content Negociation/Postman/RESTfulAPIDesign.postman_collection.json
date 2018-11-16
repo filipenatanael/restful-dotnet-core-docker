@@ -9,7 +9,19 @@
 			"name": "All Persons",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Accept",
+						"value": "text/xml",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
 				"body": {
 					"mode": "raw",
 					"raw": ""
@@ -44,7 +56,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "    {\n        \"id\": 15,\n        \"firstName\": \"John Stive Created\",\n        \"lastName\": \"Testing\",\n        \"address\": \"Belo Horizonte - Minas Gerais\",\n        \"gender\": \"Male\"\n    }"
+					"raw": "    {\n        \"id\": 15,\n        \"firstName\": \"John\",\n        \"lastName\": \"Stive\",\n        \"address\": \"Belo Horizonte\",\n        \"gender\": \"Male\"\n    }"
 				},
 				"url": {
 					"raw": "http://localhost:53039/api/v1.0/persons",
@@ -125,7 +137,18 @@
 			"name": "All Books",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Accept",
+						"value": "text/xml",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
 					"raw": ""
@@ -141,6 +164,18 @@
 						"api",
 						"v1.0",
 						"books"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
 					]
 				}
 			},

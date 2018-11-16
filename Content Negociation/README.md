@@ -1,53 +1,24 @@
-# Working With Value Objects
+# Content Negociation
 
-**IParser.cs**
+**Installed:**
+- Microsoft.AspNetCore.Mvc.Formatters.Xml
+
+**Startup.cs**
 ```C#
-
-    public interface IParser<Origin, Destiny>
-    {
-        /* Origin can be a Value Objects(VO) and Destiny can be a entity */
-        Destiny Parse(Origin origin);
-        List<Destiny> ParseList(List<Origin> origin);
-    }
-	
-```
-
-
-**PersonConverter.cs**
-```C#
-
-  // public class ParsonConverter : IParser<Origin, Destiny>
-    public class PersonConverter : IParser<PersonVO, Person>, IParser<Person, PersonVO>
-    {
-        public Person Parse(PersonVO origin)
-        {
-            if (origin == null) return new Person();
-            return new Person
+       		using Microsoft.Net.Http.Headers;
+	 
+            services.AddMvc(options =>
             {
-                Id = origin.Id,
-                FirstName = origin.FirstName,
-                LastName = origin.LastName,
-                Address = origin.Address,
-                Gender = origin.Gender
-            };
-        }
-		{ ... }
-	}
-		
-```
-**PersonVO.cs**
-```C#
+	                options.RespectBrowserAcceptHeader = true;
+	                options.FormatterMappings.SetMediaTypeMappingForFormat("xml", MediaTypeHeaderValue.Parse("text/xml"));
+	                options.FormatterMappings.SetMediaTypeMappingForFormat("json", MediaTypeHeaderValue.Parse("application/json"));
+            }).AddXmlSerializerFormatters();
 
-    public class PersonVO
-    {
-        public long? Id { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Address { get; set; }
-        public string Gender { get; set; }
-    }
-		
 ```
+
+**Postman configuration headers:**
+- KEY: Accept VALUE: text/xml
+- KEY: Accept VALUE: application/json
 
 [Versioning via the URL Path](https://github.com/Microsoft/aspnet-api-versioning/wiki/Versioning-via-the-URL-Path)
 [API Versioning Options](https://github.com/Microsoft/aspnet-api-versioning/wiki/API-Versioning-Options)

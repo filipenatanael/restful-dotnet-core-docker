@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Net.Http.Headers;
 using RESTfulAPIDesign.Models.Context;
 using RESTfulAPIDesign.Repository.Generic;
 using RESTfulAPIDesign.Services;
@@ -53,7 +54,12 @@ namespace RESTfulAPIDesign
                 }
             }
 
-            services.AddMvc();
+            services.AddMvc(options =>
+            {
+                options.RespectBrowserAcceptHeader = true;
+                options.FormatterMappings.SetMediaTypeMappingForFormat("xml", MediaTypeHeaderValue.Parse("text/xml"));
+                options.FormatterMappings.SetMediaTypeMappingForFormat("json", MediaTypeHeaderValue.Parse("application/json"));
+            }).AddXmlSerializerFormatters();
 
             services.AddApiVersioning();
 
