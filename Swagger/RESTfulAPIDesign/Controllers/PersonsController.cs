@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using RESTfulAPIDesign.Data.ValuesObjects;
-using RESTfulAPIDesign.Models;
-using RESTfulAPIDesign.Services;
-using System;
+﻿using System;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using Swashbuckle.AspNetCore.SwaggerGen;
 using Tapioca.HATEOAS;
+
+using RESTfulAPIDesign.Data.ValuesObjects;
+using RESTfulAPIDesign.Services;
 
 namespace RESTfulAPIDesign.Controllers
 {
@@ -19,13 +21,21 @@ namespace RESTfulAPIDesign.Controllers
         }
         // GET api/version/controller
         [HttpGet]
+        [ProducesResponseType(typeof(List<PersonVO>), 200)]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
         [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Get()
         {
-            return Ok(this.personService.FindAll());
+            return new OkObjectResult(this.personService.FindAll());
         }
 
         [HttpGet("{id}")]
+        [ProducesResponseType(typeof(PersonVO), 200)]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
         [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Get(int id)
         {
@@ -35,6 +45,9 @@ namespace RESTfulAPIDesign.Controllers
         }
 
         [HttpPost]
+        [ProducesResponseType(typeof(PersonVO), 201)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
         [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Post([FromBody]PersonVO person)
         {
@@ -51,6 +64,10 @@ namespace RESTfulAPIDesign.Controllers
         }
 
         [HttpPut("{id}")]
+        [ProducesResponseType(typeof(List<PersonVO>), 202)]
+        [ProducesResponseType(202)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
         [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Put(int id, [FromBody]PersonVO person)
         {
@@ -61,6 +78,9 @@ namespace RESTfulAPIDesign.Controllers
         }
 
         [HttpDelete("{id}")]
+        [ProducesResponseType(202)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
         [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Delete(int id)
         {

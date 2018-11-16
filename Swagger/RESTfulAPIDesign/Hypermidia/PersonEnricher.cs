@@ -9,7 +9,7 @@ namespace RESTfulAPIDesign.Hypermidia
     {
         protected override Task EnrichModel(PersonVO content, IUrlHelper urlHelper)
         {
-            var path = "api/persons/v1.0";
+            var path = "api/v1.0/persons";
             var url = new { controller = path, id = content.Id };
             content.Links.Add(new HyperMediaLink()
             {
