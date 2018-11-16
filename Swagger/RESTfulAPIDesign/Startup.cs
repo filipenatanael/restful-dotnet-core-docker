@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Rewrite;
 using Microsoft.EntityFrameworkCore; 
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,6 +11,7 @@ using RESTfulAPIDesign.Models.Context;
 using RESTfulAPIDesign.Repository.Generic;
 using RESTfulAPIDesign.Services;
 using RESTfulAPIDesign.Services.Implementations;
+using Swashbuckle.AspNetCore.Swagger;
 using System;
 using System.Collections.Generic;
 using Tapioca.HATEOAS;
@@ -56,6 +58,7 @@ namespace RESTfulAPIDesign
                 }
             }
 
+            // Content negociation - Support to XML and JSON
             services.AddMvc(options =>
             {
                 options.RespectBrowserAcceptHeader = true;
@@ -63,11 +66,24 @@ namespace RESTfulAPIDesign
                 options.FormatterMappings.SetMediaTypeMappingForFormat("json", MediaTypeHeaderValue.Parse("application/json"));
             }).AddXmlSerializerFormatters();
 
+            // HATEOAS filter definitions
             var filterOptions = new HyperMediaFilterOptions();
             filterOptions.ObjectContentResponseEnricherList.Add(new PersonEnricher());
             services.AddSingleton(filterOptions);
 
+            // Versioning
             services.AddApiVersioning();
+
+
+            // Swagger Configuration
+            services.AddSwaggerGen(config =>
+            {
+                config.SwaggerDoc("v1", new Info
+                {
+                    Title = "Restful API With ASP.NET Core 2.0",
+                    Version = "v1.0"
+                });
+            });
 
             /* Dependency Injection:as
              * 
@@ -78,6 +94,7 @@ namespace RESTfulAPIDesign
             services.AddScoped<IBookService, BookServiceImpl>();
             services.AddScoped<IPersonRepository, PersonRepositoryImpl>();
 
+            // GenericRepository
             services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
         }
 
@@ -88,6 +105,17 @@ namespace RESTfulAPIDesign
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c => {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
+
+            // Starting our API in Swagger page
+            var option = new RewriteOptions();
+            option.AddRedirect("^$", "swagger");
+            app.UseRewriter(option);
 
             app.UseMvc(routes => {
                 routes.MapRoute(
