@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
+using Tapioca.HATEOAS;
 
 namespace RESTfulAPIDesign.Data.ValuesObjects
 {
     [DataContract]
-    public class BookVO
+    public class BookVO : ISupportsHyperMedia
     {
         [DataMember(Order = 1, Name = "code")]
         public long? Id { get; set; }
@@ -20,5 +22,9 @@ namespace RESTfulAPIDesign.Data.ValuesObjects
 
         [DataMember(Order = 4)]
         public DateTime LaunchDate { get; set; }
+
+        // HATEOAS LINKS
+        [DataMember(Order = 6)]
+        public List<HyperMediaLink> Links { get; set; } = new List<HyperMediaLink>();
     }
 }
