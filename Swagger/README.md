@@ -1,7 +1,7 @@
-# HATEOAS
+# Swagger
 
 **Installed:**
-- Tapioca.HATEOAS
+- Swashbuckle.AspNetCore
 
 **Startup.cs**
 ```C#
