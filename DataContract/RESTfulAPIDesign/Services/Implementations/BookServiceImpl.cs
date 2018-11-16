@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using RESTfulAPIDesign.Data.Conveters;
+using RESTfulAPIDesign.Data.ValuesObjects;
 using RESTfulAPIDesign.Models;
 using RESTfulAPIDesign.Repository.Generic;
 
@@ -7,31 +9,41 @@ namespace RESTfulAPIDesign.Services.Implementations
     public class BookServiceImpl : IBookService
     {
         private IRepository<Book> repository;
+        private readonly BookConverter converter;
 
         public BookServiceImpl(IRepository<Book> repository)
         {
             this.repository = repository;
-        }
-        
-        public Book Create(Book book)
-        {   
-            // Validation here...
-            return this.repository.Create(book);
+            // Build the PersonConventer Instance
+            this.converter = new BookConverter();
         }
 
-        public List<Book> FindAll()
+        public List<BookVO> FindAll()
         {
-            return this.repository.FindAll();
+            return this.converter.ParseList(this.repository.FindAll());
         }
 
-        public Book FindById(long id)
+        public BookVO FindById(long id)
         {
-            return this.repository.FindById(id);
+            return this.converter.Parse(this.repository.FindById(id));
         }
 
-        public Book Update(Book person)
+        public BookVO Create(BookVO book)
         {
-            return this.repository.Update(person);
+            // Converter the ValuesObjects to Entity
+            var bookEntity = this.converter.Parse(book);
+            bookEntity = this.repository.Create(bookEntity);
+            // Converter the Entity to ValuesObjects
+            return this.converter.Parse(bookEntity);
+        }
+
+        public BookVO Update(BookVO book)
+        {
+            // Converter the ValuesObjects to Entity
+            var bookEntity = this.converter.Parse(book);
+            bookEntity = this.repository.Update(bookEntity);
+            // Converter the Entity to ValuesObjects
+            return this.converter.Parse(bookEntity);
         }
 
         public void Delete(long id)

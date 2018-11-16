@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RESTfulAPIDesign.Data.ValuesObjects;
 using RESTfulAPIDesign.Models;
 using RESTfulAPIDesign.Services;
 using System;
@@ -34,14 +35,14 @@ namespace RESTfulAPIDesign.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody]Book book)
+        public IActionResult Post([FromBody]BookVO book)
         {
             if (book == null) return BadRequest();
             return new ObjectResult(this.bookService.Create(book));
         }
 
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody]Book book)
+        public IActionResult Put(int id, [FromBody]BookVO book)
         {
             if (book == null) return BadRequest();
             var updateBook = this.bookService.Update(book);

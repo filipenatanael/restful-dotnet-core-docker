@@ -17,7 +17,7 @@ namespace RESTfulAPIDesign.Controllers
             this.personService = personService;
         }
 
-        // GET api/version/controller/5
+        // GET api/version/controller
         [HttpGet]
         public IActionResult Get()
         {

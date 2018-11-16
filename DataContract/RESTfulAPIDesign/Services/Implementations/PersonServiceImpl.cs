@@ -29,9 +29,7 @@ namespace RESTfulAPIDesign.Services.Implementations
         }
 
         public PersonVO Create(PersonVO person)
-        {   //          throw new Exception("Custom exception: ", exception);
-
-         
+        {
             // Converter the ValuesObjects to Entity
             var personEntity = this.converter.Parse(person);
             personEntity = this.repository.Create(personEntity);
