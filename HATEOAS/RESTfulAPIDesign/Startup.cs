@@ -5,12 +5,14 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Net.Http.Headers;
+using RESTfulAPIDesign.Hypermidia;
 using RESTfulAPIDesign.Models.Context;
 using RESTfulAPIDesign.Repository.Generic;
 using RESTfulAPIDesign.Services;
 using RESTfulAPIDesign.Services.Implementations;
 using System;
 using System.Collections.Generic;
+using Tapioca.HATEOAS;
 
 namespace RESTfulAPIDesign
 {
@@ -61,6 +63,10 @@ namespace RESTfulAPIDesign
                 options.FormatterMappings.SetMediaTypeMappingForFormat("json", MediaTypeHeaderValue.Parse("application/json"));
             }).AddXmlSerializerFormatters();
 
+            var filterOptions = new HyperMediaFilterOptions();
+            filterOptions.ObjectContentResponseEnricherList.Add(new PersonEnricher());
+            services.AddSingleton(filterOptions);
+
             services.AddApiVersioning();
 
             /* Dependency Injection:as
@@ -83,7 +89,12 @@ namespace RESTfulAPIDesign
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseMvc();
+            app.UseMvc(routes => {
+                routes.MapRoute(
+                    name: "DefaultApi",
+                    template: "{controller=Values}/{id?}"
+                    );
+            });
         }
     }
 }

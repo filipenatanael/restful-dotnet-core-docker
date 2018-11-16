@@ -1,18 +1,10 @@
 # HATEOAS
 
 **Installed:**
-- Microsoft.AspNetCore.Mvc.Formatters.Xml
+- Tapioca.HATEOAS
 
 **Startup.cs**
 ```C#
-       		using Microsoft.Net.Http.Headers;
-	 
-            services.AddMvc(options =>
-            {
-	                options.RespectBrowserAcceptHeader = true;
-	                options.FormatterMappings.SetMediaTypeMappingForFormat("xml", MediaTypeHeaderValue.Parse("text/xml"));
-	                options.FormatterMappings.SetMediaTypeMappingForFormat("json", MediaTypeHeaderValue.Parse("application/json"));
-            }).AddXmlSerializerFormatters();
 
 ```
 [HATEOAS ](https://pt.stackoverflow.com/questions/49492/por-que-hateoas-%C3%A9-importante)

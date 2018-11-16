@@ -3,6 +3,7 @@ using RESTfulAPIDesign.Data.ValuesObjects;
 using RESTfulAPIDesign.Models;
 using RESTfulAPIDesign.Services;
 using System;
+using Tapioca.HATEOAS;
 
 namespace RESTfulAPIDesign.Controllers
 {
@@ -16,16 +17,16 @@ namespace RESTfulAPIDesign.Controllers
         {
             this.personService = personService;
         }
-
         // GET api/version/controller
         [HttpGet]
+        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Get()
         {
             return Ok(this.personService.FindAll());
         }
 
-        // GET api/version/controller/5
         [HttpGet("{id}")]
+        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Get(int id)
         {
             var person = this.personService.FindById(id);
@@ -33,8 +34,8 @@ namespace RESTfulAPIDesign.Controllers
             return Ok(person);
         }
 
-        // POST api/version/controller
         [HttpPost]
+        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Post([FromBody]PersonVO person)
         {
             if (person == null) return BadRequest();
@@ -49,8 +50,8 @@ namespace RESTfulAPIDesign.Controllers
            
         }
 
-        // PUT api/version/controller/5
         [HttpPut("{id}")]
+        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Put(int id, [FromBody]PersonVO person)
         {
             if (person == null) return BadRequest();
@@ -59,8 +60,8 @@ namespace RESTfulAPIDesign.Controllers
             return new ObjectResult(updatePerson);
         }
 
-        // DELETE api/version/controller/5
         [HttpDelete("{id}")]
+        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Delete(int id)
         {
             this.personService.Delete(id);
