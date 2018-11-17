@@ -21,6 +21,7 @@ namespace RESTfulAPIDesign.Repository.Generic
 
         public List<T> FindAll()
         {
+            // (Not valied code): MySQLContext->Users->ToList();
             return this.dataset.ToList();
         }
 
