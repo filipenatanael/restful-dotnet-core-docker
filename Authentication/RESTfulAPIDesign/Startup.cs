@@ -1,20 +1,25 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Rewrite;
-using Microsoft.EntityFrameworkCore; 
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Microsoft.Net.Http.Headers;
+using System.Collections.Generic;
+using Swashbuckle.AspNetCore.Swagger;
+using Tapioca.HATEOAS;
+
 using RESTfulAPIDesign.Hypermidia;
 using RESTfulAPIDesign.Models.Context;
 using RESTfulAPIDesign.Repository.Generic;
+using RESTfulAPIDesign.Security.Configuration;
 using RESTfulAPIDesign.Services;
 using RESTfulAPIDesign.Services.Implementations;
-using Swashbuckle.AspNetCore.Swagger;
-using System;
-using System.Collections.Generic;
-using Tapioca.HATEOAS;
 
 namespace RESTfulAPIDesign
 {
@@ -37,28 +42,62 @@ namespace RESTfulAPIDesign
             var connectionString = configuration["MySqlConnection:MySqlConnectionString"];
             services.AddDbContext<MySQLContext>(options => options.UseMySql(connectionString));
 
-            if(this.environment.IsDevelopment())
+            /*
+             * Adding Migrations
+            */
+            ExecuteMigrations(connectionString);
+
+            /*
+             * Authorization
+            */
+            var signingConfigurations = new SigningConfigurations();
+            services.AddSingleton(signingConfigurations);
+
+            var tokenConfigurations = new TokenConfiguration();
+
+            new ConfigureFromConfigurationOptions<TokenConfiguration>(
+                this.configuration.GetSection("TokenConfigurations")
+            )
+            .Configure(tokenConfigurations);
+
+            services.AddSingleton(tokenConfigurations);
+
+            services.AddAuthentication(authOptions =>
             {
-                try
-                {
-                    var evolveConnection = new MySql.Data.MySqlClient.MySqlConnection(connectionString);
-                    var evolve = new Evolve.Evolve("evolve.json", evolveConnection, msg => logger.LogInformation(msg))
-                    {   
-                        // Where are the magrations:
-                        Locations = new List<string> { "Database/migrations" },
-                        // Does not clean database
-                         IsEraseDisabled = true
-                    };
-                    evolve.Migrate();
+                authOptions.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                authOptions.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(bearerOptions =>
+            {
+                var paramsValidation = bearerOptions.TokenValidationParameters;
+                paramsValidation.IssuerSigningKey = signingConfigurations.Key;
+                paramsValidation.ValidAudience = tokenConfigurations.Audience;
+                paramsValidation.ValidIssuer = tokenConfigurations.Issuer;
 
-                } catch(Exception exception)
-                {
-                    this.logger.LogCritical("Database migration failed: ", exception);
-                    throw;
-                }
-            }
+                // Validates the signing of a received token
+                paramsValidation.ValidateIssuerSigningKey = true;
 
-            // Content negociation - Support to XML and JSON
+                // Checks if a received token is still valid
+                paramsValidation.ValidateLifetime = true;
+
+                // Tolerance time for the expiration of a token (used in case
+                // of time synchronization problems between different
+                // computers involved in the communication process)
+                paramsValidation.ClockSkew = TimeSpan.Zero;
+            });
+
+            // Enables the use of the token as a means of
+            // authorizing access to this project's resources
+            services.AddAuthorization(auth =>
+            {
+                auth.AddPolicy("Bearer", new AuthorizationPolicyBuilder()
+                    .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme‌​)
+                    .RequireAuthenticatedUser().Build());
+            });
+
+
+            /*
+             * Content negociation - Support to XML and JSON
+            */
             services.AddMvc(options =>
             {
                 options.RespectBrowserAcceptHeader = true;
@@ -66,17 +105,22 @@ namespace RESTfulAPIDesign
                 options.FormatterMappings.SetMediaTypeMappingForFormat("json", MediaTypeHeaderValue.Parse("application/json"));
             }).AddXmlSerializerFormatters();
 
-            // HATEOAS filter definitions
+            /*
+             * HATEOAS filter definitions
+            */
             var filterOptions = new HyperMediaFilterOptions();
             filterOptions.ObjectContentResponseEnricherList.Add(new PersonEnricher());
             filterOptions.ObjectContentResponseEnricherList.Add(new BookEnricher());
             services.AddSingleton(filterOptions);
 
-            // Versioning
+            /*
+            * Versioning Endpoints
+            */
             services.AddApiVersioning();
 
-
-            // Swagger Configuration
+            /* 
+             * Swagger Configuration
+            */
             services.AddSwaggerGen(config =>
             {
                 config.SwaggerDoc("v1", new Info
@@ -93,11 +137,41 @@ namespace RESTfulAPIDesign
             */
             services.AddScoped<IPersonService, PersonServiceImpl>();
             services.AddScoped<IBookService, BookServiceImpl>();
-            services.AddScoped<IPersonRepository, PersonRepositoryImpl>();
+            services.AddScoped<ILoginService, LoginServiceImpl>();
+            services.AddScoped<IUserRepository, UserRepositoryImpl>();
 
-            // GenericRepository
+            /* 
+             * GenericRepository
+            */
             services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
         }
+
+
+        private void ExecuteMigrations(string connectionString)
+        {
+            if (this.environment.IsDevelopment())
+            {
+                try
+                {
+                    var evolveConnection = new MySql.Data.MySqlClient.MySqlConnection(connectionString);
+                    var evolve = new Evolve.Evolve("evolve.json", evolveConnection, msg => logger.LogInformation(msg))
+                    {
+                        // Where are the magrations:
+                        Locations = new List<string> { "Database/migrations" },
+                        // Does not clean database
+                        IsEraseDisabled = true
+                    };
+                    evolve.Migrate();
+
+                }
+                catch (Exception exception)
+                {
+                    this.logger.LogCritical("Database migration failed: ", exception);
+                    throw;
+                }
+            }
+        }
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -109,7 +183,8 @@ namespace RESTfulAPIDesign
 
             app.UseSwagger();
 
-            app.UseSwaggerUI(c => {
+            app.UseSwaggerUI(c =>
+            {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
 
@@ -118,7 +193,8 @@ namespace RESTfulAPIDesign
             option.AddRedirect("^$", "swagger");
             app.UseRewriter(option);
 
-            app.UseMvc(routes => {
+            app.UseMvc(routes =>
+            {
                 routes.MapRoute(
                     name: "DefaultApi",
                     template: "{controller=Values}/{id?}"
