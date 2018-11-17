@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using RESTfulAPIDesign.Data.ValuesObjects;
-using RESTfulAPIDesign.Models;
 
 namespace RESTfulAPIDesign.Services
 {
