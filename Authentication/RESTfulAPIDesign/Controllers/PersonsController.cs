@@ -6,6 +6,7 @@ using Tapioca.HATEOAS;
 
 using RESTfulAPIDesign.Data.ValuesObjects;
 using RESTfulAPIDesign.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace RESTfulAPIDesign.Controllers
 {
@@ -26,6 +27,7 @@ namespace RESTfulAPIDesign.Controllers
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
+        [Authorize("Bearer")]
         [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Get()
         {
@@ -37,6 +39,7 @@ namespace RESTfulAPIDesign.Controllers
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
+        [Authorize("Bearer")]
         [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Get(int id)
         {
@@ -49,6 +52,7 @@ namespace RESTfulAPIDesign.Controllers
         [ProducesResponseType(typeof(PersonVO), 201)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
+        [Authorize("Bearer")]
         [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Post([FromBody]PersonVO person)
         {
@@ -69,6 +73,7 @@ namespace RESTfulAPIDesign.Controllers
         [ProducesResponseType(202)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
+        [Authorize("Bearer")]
         [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Put(int id, [FromBody]PersonVO person)
         {
@@ -82,6 +87,7 @@ namespace RESTfulAPIDesign.Controllers
         [ProducesResponseType(202)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
+        [Authorize("Bearer")]
         [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Delete(int id)
         {

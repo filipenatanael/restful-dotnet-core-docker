@@ -69,6 +69,7 @@ namespace RESTfulAPIDesign
             // HATEOAS filter definitions
             var filterOptions = new HyperMediaFilterOptions();
             filterOptions.ObjectContentResponseEnricherList.Add(new PersonEnricher());
+            filterOptions.ObjectContentResponseEnricherList.Add(new BookEnricher());
             services.AddSingleton(filterOptions);
 
             // Versioning
