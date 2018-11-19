@@ -1,0 +1,50 @@
+{
+	"info": {
+		"_postman_id": "c0e6e460-77ec-454f-916a-80ef94e4c65b",
+		"name": "File",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Retuns Files",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6WyJhZG1pbiIsImFkbWluIl0sImp0aSI6IjY0YWQ1OWVlNmVmZDRlMDA4ZTVmZGU3OWY0YzMwNTQyIiwibmJmIjoxNTQyNjM1Njk0LCJleHAiOjE1NDI2MzY4OTQsImlhdCI6MTU0MjYzNTY5NCwiaXNzIjoiRXhlbXBsZUlzc3VlciIsImF1ZCI6IkV4ZW1wbGVBdWRpZW5jZSJ9.AfOnvJTURDWdMhRmpPSQVdv_ksP9DZAosBCSeElNiO9kEhRaX745amdZy7VC29enKok4uAjCaAF0bdbFO3evvLozdq8o2ywWzMEW-z3VumU_321sprPY_CKTCeBKMZLDxPNYWiWhDdb3mDAlzx6GwsWIEyzfo6lBNOnXZ50Ggh18tn_Exekm_XRHKOdM8r0m7AEY_JCzCQb5mGSJo4SyDWsQUEzp7925QIZaK5wFfXUzIWpHQsnlI-pqfIKJQOHG8L7JalszkZ0OInea3b2ZA2HOzCPwjWj4-MYwmkcPRVYjklkyL0CPUVfFMDFgXDhKC7g_Vtv312dFA5i3lw1NYg",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "text/plain, application/json, text/json, application/xml, text/xml",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:53039/api/v1.0/file",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "53039",
+					"path": [
+						"api",
+						"v1.0",
+						"file"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
