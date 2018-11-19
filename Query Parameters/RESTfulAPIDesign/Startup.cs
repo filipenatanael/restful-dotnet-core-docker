@@ -20,6 +20,7 @@ using RESTfulAPIDesign.Repository.Generic;
 using RESTfulAPIDesign.Security.Configuration;
 using RESTfulAPIDesign.Services;
 using RESTfulAPIDesign.Services.Implementations;
+using RESTfulAPIDesign.Repository;
 
 namespace RESTfulAPIDesign
 {
@@ -139,7 +140,7 @@ namespace RESTfulAPIDesign
             services.AddScoped<IBookService, BookServiceImpl>();
             services.AddScoped<ILoginService, LoginServiceImpl>();
             services.AddScoped<IUserRepository, UserRepositoryImpl>();
-
+            services.AddScoped<IPersonRepository, PersonRepositoryImpl>();
             /* 
              * GenericRepository
             */

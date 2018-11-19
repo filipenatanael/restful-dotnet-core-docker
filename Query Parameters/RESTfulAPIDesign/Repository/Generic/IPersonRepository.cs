@@ -1,8 +1,7 @@
 ﻿using RESTfulAPIDesign.Models;
-using RESTfulAPIDesign.Repository.Generic;
 using System.Collections.Generic;
 
-namespace RESTfulAPIDesign.Repository
+namespace RESTfulAPIDesign.Repository.Generic
 {
     public interface IPersonRepository : IRepository<Person>
     {

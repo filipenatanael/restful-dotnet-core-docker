@@ -9,9 +9,9 @@ namespace RESTfulAPIDesign.Services
         PersonVO Create(PersonVO person);
         PersonVO FindById(long id);
         List<PersonVO> FindAll();
+        List<PersonVO> FindByName(string fristName, string lastName);
         PersonVO Update(PersonVO person);
         void Delete(long id);
-        List<PersonVO> FindByName(string fristName, string lastName);
         PagedSearchDTO<PersonVO> FindWithPagedSearch(string name, string sortDirection, int pageSize, int page);
     }
 }

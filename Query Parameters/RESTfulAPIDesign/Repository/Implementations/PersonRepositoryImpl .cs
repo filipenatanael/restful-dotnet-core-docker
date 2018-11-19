@@ -2,7 +2,6 @@
 using System.Linq;
 using RESTfulAPIDesign.Models;
 using RESTfulAPIDesign.Models.Context;
-using RESTfulAPIDesign.Repository;
 using RESTfulAPIDesign.Repository.Generic;
 
 namespace RESTfulAPIDesign.Services.Implementations

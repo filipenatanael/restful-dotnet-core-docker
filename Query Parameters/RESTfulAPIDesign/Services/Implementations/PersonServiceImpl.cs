@@ -17,8 +17,7 @@ namespace RESTfulAPIDesign.Services.Implementations
         {
             this.repository = repository;
             // Build the PersonConventer Instance
-            this.converter = new PersonConverter();
-        }
+            this.converter = new PersonConverter();        }
 
         public List<PersonVO> FindAll()
         {
