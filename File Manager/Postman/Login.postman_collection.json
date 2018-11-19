@@ -1,0 +1,44 @@
+{
+	"info": {
+		"_postman_id": "e2cbcc34-f6ef-4a7d-905d-0ddf7858bf60",
+		"name": "Login",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "SignIN",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"login\": \"admin\",\n\t\"accessKey\": \"admin123\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:53039/api/v1.0/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "53039",
+					"path": [
+						"api",
+						"v1.0",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
