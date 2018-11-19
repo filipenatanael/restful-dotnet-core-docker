@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Others\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 

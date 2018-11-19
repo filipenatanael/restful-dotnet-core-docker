@@ -2,8 +2,8 @@
 
 namespace RESTfulAPIDesign.Services
 {
-    interface IFileService
+    public interface IFileService
     {
-        byte[] GetPDFFile(UserVO user);
+        byte[] GetPDFFile();
     }
 }
