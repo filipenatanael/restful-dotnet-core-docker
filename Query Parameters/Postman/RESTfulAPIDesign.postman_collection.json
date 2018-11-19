@@ -1,0 +1,328 @@
+{
+	"info": {
+		"_postman_id": "f72f3bbf-901b-421c-86f9-02827995409c",
+		"name": "RESTfulAPIDesign",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "All Persons",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "text/xml",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6WyJhZG1pbiIsImFkbWluIl0sImp0aSI6ImI5MzcxZDFhOTRiMzQ2YjFiMjljZTFkOGFkZDMxNDYzIiwibmJmIjoxNTQyNTkzMTkzLCJleHAiOjE1NDI1OTQzOTMsImlhdCI6MTU0MjU5MzE5MywiaXNzIjoiRXhlbXBsZUlzc3VlciIsImF1ZCI6IkV4ZW1wbGVBdWRpZW5jZSJ9.h4i6tg1uuCacaTX5LvXeNGpjSylVVebo01GJkKwNpsHZ0jdIQIpMEDbnphslO0p94iTv3k6tyA-i_8ua5F5_2eYwFheweRp7JXH7WtHuX-M2hphTWo8nRG2hg0eEnGHTh_Ro5yQw8pxHr8DI194uR-bCBZiKZ15RVb7tYNh_O0yNItkX2YTp3i0j2Q0MWh9C3r5YNZGKPL9z98XVSot4cW8nRqoVqaa-mBzE_c-jJEpBs6h0pxTF0uZYw3CoGZ7jqcIEKzB40dX0VgQ0ygpRAtNo6YzkgOibAvG14Lu_f03zc9Sl-v74L4xHJLgYTBTrt2dd4uu-7o68Q2m-HHnicA",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:53039/api/v1.0/persons",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "53039",
+					"path": [
+						"api",
+						"v1.0",
+						"persons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Person",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n        \"id\": 15,\n        \"firstName\": \"John\",\n        \"lastName\": \"Stive\",\n        \"address\": \"Belo Horizonte\",\n        \"gender\": \"Male\"\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:53039/api/v1.0/persons",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "53039",
+					"path": [
+						"api",
+						"v1.0",
+						"persons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Person",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n        \"id\": 15,\n        \"firstName\": \"John\",\n        \"lastName\": \"Stive\",\n        \"address\": \"Belo Horizonte\",\n        \"gender\": \"Male\"\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:53039/api/v1.0/persons/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "53039",
+					"path": [
+						"api",
+						"v1.0",
+						"persons",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Person",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:53039/api/v1.0/persons/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "53039",
+					"path": [
+						"api",
+						"v1.0",
+						"persons",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All Books",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "text/xml",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:53039/api/v1.0/books?Authorization=Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6WyJhZG1pbiIsImFkbWluIl0sImp0aSI6ImI5MzcxZDFhOTRiMzQ2YjFiMjljZTFkOGFkZDMxNDYzIiwibmJmIjoxNTQyNTkzMTkzLCJleHAiOjE1NDI1OTQzOTMsImlhdCI6MTU0MjU5MzE5MywiaXNzIjoiRXhlbXBsZUlzc3VlciIsImF1ZCI6IkV4ZW1wbGVBdWRpZW5jZSJ9.h4i6tg1uuCacaTX5LvXeNGpjSylVVebo01GJkKwNpsHZ0jdIQIpMEDbnphslO0p94iTv3k6tyA-i_8ua5F5_2eYwFheweRp7JXH7WtHuX-M2hphTWo8nRG2hg0eEnGHTh_Ro5yQw8pxHr8DI194uR-bCBZiKZ15RVb7tYNh_O0yNItkX2YTp3i0j2Q0MWh9C3r5YNZGKPL9z98XVSot4cW8nRqoVqaa-mBzE_c-jJEpBs6h0pxTF0uZYw3CoGZ7jqcIEKzB40dX0VgQ0ygpRAtNo6YzkgOibAvG14Lu_f03zc9Sl-v74L4xHJLgYTBTrt2dd4uu-7o68Q2m-HHnicA&Accept=application/json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "53039",
+					"path": [
+						"api",
+						"v1.0",
+						"books"
+					],
+					"query": [
+						{
+							"key": "Authorization",
+							"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6WyJhZG1pbiIsImFkbWluIl0sImp0aSI6ImI5MzcxZDFhOTRiMzQ2YjFiMjljZTFkOGFkZDMxNDYzIiwibmJmIjoxNTQyNTkzMTkzLCJleHAiOjE1NDI1OTQzOTMsImlhdCI6MTU0MjU5MzE5MywiaXNzIjoiRXhlbXBsZUlzc3VlciIsImF1ZCI6IkV4ZW1wbGVBdWRpZW5jZSJ9.h4i6tg1uuCacaTX5LvXeNGpjSylVVebo01GJkKwNpsHZ0jdIQIpMEDbnphslO0p94iTv3k6tyA-i_8ua5F5_2eYwFheweRp7JXH7WtHuX-M2hphTWo8nRG2hg0eEnGHTh_Ro5yQw8pxHr8DI194uR-bCBZiKZ15RVb7tYNh_O0yNItkX2YTp3i0j2Q0MWh9C3r5YNZGKPL9z98XVSot4cW8nRqoVqaa-mBzE_c-jJEpBs6h0pxTF0uZYw3CoGZ7jqcIEKzB40dX0VgQ0ygpRAtNo6YzkgOibAvG14Lu_f03zc9Sl-v74L4xHJLgYTBTrt2dd4uu-7o68Q2m-HHnicA"
+						},
+						{
+							"key": "Accept",
+							"value": "application/json"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Book",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n        \"title\": \"Design Patterns - Testing\",\n        \"author\": \"Ralph Johnson, Erich Gamma, John Vlissides e Richard Helm\",\n        \"price\": 45,\n        \"launchDate\": \"2017-11-29T15:15:13.636\",\n        \"id\": 23\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:53039/api/v1.0/books",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "53039",
+					"path": [
+						"api",
+						"v1.0",
+						"books"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Book",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n        \"title\": \"Design Patterns\",\n        \"author\": \"Ralph Johnson, Erich Gamma, John Vlissides e Richard Helm\",\n        \"price\": 45,\n        \"launchDate\": \"2017-11-29T15:15:13.636\",\n        \"id\": 23\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:53039/api/v1.0/books/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "53039",
+					"path": [
+						"api",
+						"v1.0",
+						"books",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Book",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:53039/api/v1.0/books/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "53039",
+					"path": [
+						"api",
+						"v1.0",
+						"books",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search By Name",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6WyJhZG1pbiIsImFkbWluIl0sImp0aSI6ImI5MzcxZDFhOTRiMzQ2YjFiMjljZTFkOGFkZDMxNDYzIiwibmJmIjoxNTQyNTkzMTkzLCJleHAiOjE1NDI1OTQzOTMsImlhdCI6MTU0MjU5MzE5MywiaXNzIjoiRXhlbXBsZUlzc3VlciIsImF1ZCI6IkV4ZW1wbGVBdWRpZW5jZSJ9.h4i6tg1uuCacaTX5LvXeNGpjSylVVebo01GJkKwNpsHZ0jdIQIpMEDbnphslO0p94iTv3k6tyA-i_8ua5F5_2eYwFheweRp7JXH7WtHuX-M2hphTWo8nRG2hg0eEnGHTh_Ro5yQw8pxHr8DI194uR-bCBZiKZ15RVb7tYNh_O0yNItkX2YTp3i0j2Q0MWh9C3r5YNZGKPL9z98XVSot4cW8nRqoVqaa-mBzE_c-jJEpBs6h0pxTF0uZYw3CoGZ7jqcIEKzB40dX0VgQ0ygpRAtNo6YzkgOibAvG14Lu_f03zc9Sl-v74L4xHJLgYTBTrt2dd4uu-7o68Q2m-HHnicA",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:53039/api/v1.0/persons/find-with-paged-search/asc/3/1?name=John",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "53039",
+					"path": [
+						"api",
+						"v1.0",
+						"persons",
+						"find-with-paged-search",
+						"asc",
+						"3",
+						"1"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "John"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
