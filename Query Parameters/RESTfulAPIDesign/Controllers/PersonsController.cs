@@ -48,6 +48,33 @@ namespace RESTfulAPIDesign.Controllers
             return Ok(person);
         }
 
+        /* 
+         * Query Params
+         */
+        [HttpGet("find-by-name")]
+        [ProducesResponseType(typeof(PersonVO), 200)]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        [Authorize("Bearer")]
+        [TypeFilter(typeof(HyperMediaFilter))]
+        public IActionResult GetByName([FromQuery] string firstName, [FromQuery] string lastName)
+        {
+            return new OkObjectResult(this.personService.FindByName(firstName, lastName));
+        }
+
+        [HttpGet("find-with-paged-search/{sortDirection}/{pageSize}/{page}")]
+        [ProducesResponseType(typeof(PersonVO), 200)]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        [Authorize("Bearer")]
+        [TypeFilter(typeof(HyperMediaFilter))]
+        public IActionResult GetPagedSearch([FromQuery] string name, string sortDirection, int pageSize, int page)
+        {
+            return new OkObjectResult(this.personService.FindWithPagedSearch(name, sortDirection, pageSize, page));
+        }
+
         [HttpPost]
         [ProducesResponseType(typeof(PersonVO), 201)]
         [ProducesResponseType(400)]

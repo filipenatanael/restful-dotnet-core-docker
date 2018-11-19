@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using RESTfulAPIDesign.Data.ValuesObjects;
+using Tapioca.HATEOAS.Utils;
 
 namespace RESTfulAPIDesign.Services
 {
@@ -10,5 +11,7 @@ namespace RESTfulAPIDesign.Services
         List<PersonVO> FindAll();
         PersonVO Update(PersonVO person);
         void Delete(long id);
+        List<PersonVO> FindByName(string fristName, string lastName);
+        PagedSearchDTO<PersonVO> FindWithPagedSearch(string name, string sortDirection, int pageSize, int page);
     }
 }
