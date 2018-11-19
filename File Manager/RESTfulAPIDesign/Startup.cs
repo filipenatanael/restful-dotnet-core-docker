@@ -141,6 +141,7 @@ namespace RESTfulAPIDesign
             services.AddScoped<ILoginService, LoginServiceImpl>();
             services.AddScoped<IUserRepository, UserRepositoryImpl>();
             services.AddScoped<IPersonRepository, PersonRepositoryImpl>();
+            services.AddScoped<IFileService, FileServiceImpl>();
             /* 
              * GenericRepository
             */
