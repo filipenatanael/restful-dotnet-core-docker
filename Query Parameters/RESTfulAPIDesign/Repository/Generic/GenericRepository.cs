@@ -10,7 +10,7 @@ namespace RESTfulAPIDesign.Repository.Generic
     // public class GenericRepository<Book> : IRepository<Book> where Book : BaseEntity
     public class GenericRepository<T> : IRepository<T> where T : BaseEntity
     {
-        private readonly MySQLContext context;
+        protected readonly MySQLContext context;
         private DbSet<T> dataset;
 
         public GenericRepository(MySQLContext _context)
