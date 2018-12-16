@@ -1,0 +1,8 @@
+version: '3.0'
+
+services:
+  RestfulWebServicesCalculator:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "80"
