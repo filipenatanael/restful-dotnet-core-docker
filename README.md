@@ -19,6 +19,7 @@ Learning Webservices API's REST e RESTful Using ASP.NET Core 2.0
 - Working With Value Objects
 - Data Contract
 - Content Negociation
+- Docker
 - HATEOAS
 - Swagger
 - Authentication
