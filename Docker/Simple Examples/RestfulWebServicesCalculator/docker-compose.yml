@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  RestfulWebServicesCalculator:
+    image: restfulwebservicescalculator-api
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+    ports:
+      - "5000:80"
+    networks:
+      - udemy-network
+
+networks: 
+  udemy-network:
+    driver: bridge
