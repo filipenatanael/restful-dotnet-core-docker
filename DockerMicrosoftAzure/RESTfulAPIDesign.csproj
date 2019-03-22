@@ -2,15 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="Postman Calculator\**" />
-    <Content Remove="Postman Calculator\**" />
-    <EmbeddedResource Remove="Postman Calculator\**" />
-    <None Remove="Postman Calculator\**" />
-  </ItemGroup>
 
   <ItemGroup>
     <Folder Include="wwwroot\" />
