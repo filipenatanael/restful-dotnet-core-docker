@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using RESTfulAPIDesign.Services;
+using RESTfulAPIDesign.Services.Implementations;
 
-namespace RestfulWebServicesCalculator
+namespace RESTfulAPIDesign
 {
     public class Startup
     {
@@ -24,6 +20,13 @@ namespace RestfulWebServicesCalculator
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            /* Dependency Injection:
+             * 
+             * This mapping between the interface and the concrete type defines, 
+             * that everytime you request a type of IPersonService, you'll get a new instance of the PersonServiceImpl. 
+            */
+            services.AddScoped<IPersonService, PersonServiceImpl>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

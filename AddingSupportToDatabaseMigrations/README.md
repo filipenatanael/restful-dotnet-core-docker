@@ -1,13 +1,8 @@
 # Client Controller Service Repository
 
-- Client
-- Controller
-- Service
-- Repository 
-  - Context
-
-What (long? ) means? 
-- nullable
+Installed:
+- Evolve
+- MySqlData
 
 [Versioning via the URL Path](https://github.com/Microsoft/aspnet-api-versioning/wiki/Versioning-via-the-URL-Path)
 [API Versioning Options](https://github.com/Microsoft/aspnet-api-versioning/wiki/API-Versioning-Options)
